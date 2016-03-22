@@ -1,0 +1,27 @@
+{
+    "name": "spa-wamp",
+    "version": "1.2.0",
+    "description": "Web Application Messaging Protocol lightweight implementation.",
+    "author": {
+        "name": "Stanislav Kalashnik",
+        "email": "darkpark.main@gmail.com"
+    },
+    "repository": "spasdk/wamp",
+    "scripts": {
+        "lint": "eslint ./*.js",
+        "test": "node ./tests/main.js",
+        "jsdoc": "jsdoc --destination doc *.js readme.md"
+    },
+    "devDependencies": {
+        "spa-eslint-config": "spasdk/eslint-config"
+    },
+    "keywords": [
+        "commonjs",
+        "sdk",
+        "spasdk",
+        "framework",
+        "wamp",
+        "wrapper"
+    ],
+    "license": "GPL-3.0"
+}
