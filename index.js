@@ -22,21 +22,29 @@ function Wamp ( uri ) {
     function getSocket () {
         var socket = new WebSocket(uri);
 
+        socket.onopen = function () {
+            // notify listeners
+            self.emit('wamp:open');
+        };
+
         // reconnect
         socket.onclose = function () {
+            // notify listeners
+            self.emit('wamp:open');
+
             setTimeout(function () {
                 // recreate connection
                 self.socket = getSocket();
                 // reroute messages
-                socket.onmessage = function ( event ) {
+                self.socket.onmessage = function ( event ) {
                     self.router(event.data);
                 };
             }, timeout);
         };
-        
+
         return socket;
     }
-    
+
     console.assert(typeof this === 'object', 'must be constructed via new');
 
     // parent constructor call
