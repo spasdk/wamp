@@ -6,7 +6,11 @@
 'use strict';
 
 var CjsWamp = require('cjs-wamp'),
-    timeout = 5000;
+    timeout = 5000,
+    events  = {
+        open:  'wamp:open',
+        close: 'wamp:close'
+    };
 
 
 /**
@@ -23,14 +27,24 @@ function Wamp ( uri ) {
         var socket = new WebSocket(uri);
 
         socket.onopen = function () {
-            // notify listeners
-            self.emit('wamp:open');
+            // there are some listeners
+            if ( self.events[events.open] ) {
+                self.emit(events.open);
+            }
+
+            // set activity flag
+            self.open = true;
         };
 
         // reconnect
         socket.onclose = function () {
-            // notify listeners
-            self.emit('wamp:open');
+            // there are some listeners and it's the first time
+            if ( self.events[events.close] && self.open ) {
+                self.emit(events.close);
+            }
+
+            // mark as closed
+            self.open = false;
 
             setTimeout(function () {
                 // recreate connection
@@ -46,6 +60,9 @@ function Wamp ( uri ) {
     }
 
     console.assert(typeof this === 'object', 'must be constructed via new');
+
+    // connection state
+    this.open = false;
 
     // parent constructor call
     CjsWamp.call(this, getSocket());
