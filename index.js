@@ -8,8 +8,8 @@
 var CjsWamp = require('cjs-wamp'),
     timeout = 5000,
     events  = {
-        open:  'wamp:open',
-        close: 'wamp:close'
+        open:  'connection:open',
+        close: 'connection:close'
     };
 
 
