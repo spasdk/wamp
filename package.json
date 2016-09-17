@@ -11,14 +11,15 @@
         "url": "https://github.com/spasdk/wamp.git"
     },
     "scripts": {
-        "lint": "eslint ./*.js",
-        "test": "node ./tests/main.js",
+        "lint": "eslint .",
+        "test": "npm run lint",
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
         "cjs-wamp": "cjssdk/wamp"
     },
     "devDependencies": {
+        "eslint": "2.*.*",
         "spa-eslint-config": "spasdk/eslint-config"
     },
     "keywords": [
