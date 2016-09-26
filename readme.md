@@ -6,6 +6,8 @@ WAMP Implementation wrapper
 [![Dependencies Status](https://img.shields.io/david/spasdk/wamp.svg?style=flat-square)](https://david-dm.org/spasdk/wamp)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-blue.svg?style=flat-square)](https://gitter.im/DarkPark/spasdk)
 
+Thin wrapper around [cjs-wamp](https://github.com/cjssdk/wamp) module.
+
 
 ## Installation ##
 
@@ -22,12 +24,58 @@ Add the constructor to the scope:
 var Wamp = require('spa-wamp');
 ```
 
-Create an instance from some existing WebSocket connection:
+Create a WAMP connection:
 
 ```js
 var wamp = new Wamp('ws://echo.websocket.org');
 ```
 
+Wait for an open state to exec remote method and serve remote request:
+
+```js
+wamp.addListener(wamp.EVENT_OPEN, function () {
+    wamp.call('getInfo', {id: 128}, function ( error, result ) {
+        // handle execution result
+    });
+    
+    wamp.addListener('getData', function ( params, callback ) {
+        // handle request ...
+        // send back results to the sender
+        callback(null, requestedData);
+    });
+});
+````
+
+Catch a connection loss and automatically reconnect:
+
+```js
+wamp.addListener(wamp.EVENT_CLOSE, function () {
+    console.log('reconnecting in 5 seconds ...');
+});
+````
+
+Create a WAMP instance with increased reconnection time:
+
+```js
+var wamp = new Wamp('ws://echo.websocket.org', {timeout: 30000});
+```
+
+Timeout can be changed for all instances at once:
+
+```js
+Wamp.prototype.timeout = 30000;
+```
+
+To disable automatic reconnection set `timeout` to 0;
+
+It's possible to work directly with original WebSocket connection (but messaging should be avoided):
+
+```js
+// ok
+wamp.socket.close();
+// not recommended
+wamp.socket.send('some message');
+```
 
 ## Contribution ##
 
