@@ -24,10 +24,14 @@ function Wamp ( uri, config ) {
         var socket = new WebSocket(uri);
 
         socket.onopen = function () {
-            // there are some listeners
-            if ( self.events[self.EVENT_OPEN] ) {
-                self.emit(self.EVENT_OPEN);
+            if ( typeof self.onopen === 'function' ) {
+                self.onopen();
             }
+
+            // there are some listeners
+            // if ( self.events[self.EVENT_OPEN] ) {
+            //     self.emit(self.EVENT_OPEN);
+            // }
 
             // set activity flag
             self.open = true;
@@ -35,10 +39,14 @@ function Wamp ( uri, config ) {
 
         // reconnect
         socket.onclose = function () {
-            // there are some listeners and it's the first time
-            if ( self.events[self.EVENT_CLOSE] && self.open ) {
-                self.emit(self.EVENT_CLOSE);
+            if ( typeof self.onclose === 'function' ) {
+                self.onclose();
             }
+
+            // there are some listeners and it's the first time
+            // if ( self.events[self.EVENT_CLOSE] && self.open ) {
+            //     self.emit(self.EVENT_CLOSE);
+            // }
 
             // mark as closed
             self.open = false;
@@ -71,6 +79,10 @@ function Wamp ( uri, config ) {
         this.timeout = config.timeout;
     }
 
+    // events
+    this.onopen  = null;
+    this.onclose = null;
+
     // parent constructor call
     CjsWamp.call(this, getSocket());
 }
@@ -84,8 +96,8 @@ Wamp.prototype.constructor = Wamp;
 Wamp.prototype.timeout = 5000;
 
 // events
-Wamp.prototype.EVENT_OPEN  = 'wamp:connection:open';
-Wamp.prototype.EVENT_CLOSE = 'wamp:connection:close';
+// Wamp.prototype.EVENT_OPEN  = 'wamp:connection:open';
+// Wamp.prototype.EVENT_CLOSE = 'wamp:connection:close';
 
 
 // public
