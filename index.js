@@ -39,7 +39,7 @@ function Wamp ( uri, config ) {
 
         // reconnect
         socket.onclose = function () {
-            if ( typeof self.onclose === 'function' ) {
+            if ( typeof self.onclose === 'function' && self.open ) {
                 self.onclose();
             }
 
