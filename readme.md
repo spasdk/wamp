@@ -1,9 +1,10 @@
 WAMP Implementation wrapper
 ===========================
 
-[![Build Status](https://img.shields.io/travis/spasdk/wamp.svg?style=flat-square)](https://travis-ci.org/spasdk/wamp)
-[![NPM version](https://img.shields.io/npm/v/spa-wamp.svg?style=flat-square)](https://www.npmjs.com/package/spa-wamp)
-[![Dependencies Status](https://img.shields.io/david/spasdk/wamp.svg?style=flat-square)](https://david-dm.org/spasdk/wamp)
+[![build status](https://img.shields.io/travis/spasdk/wamp.svg?style=flat-square)](https://travis-ci.org/spasdk/wamp)
+[![npm version](https://img.shields.io/npm/v/spa-wamp.svg?style=flat-square)](https://www.npmjs.com/package/spa-wamp)
+[![dependencies status](https://img.shields.io/david/spasdk/wamp.svg?style=flat-square)](https://david-dm.org/spasdk/wamp)
+[![devDependencies status](https://img.shields.io/david/dev/spasdk/wamp.svg?style=flat-square)](https://david-dm.org/spasdk/wamp?type=dev)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-blue.svg?style=flat-square)](https://gitter.im/DarkPark/spasdk)
 
 Thin wrapper around [cjs-wamp](https://github.com/cjssdk/wamp) module.
