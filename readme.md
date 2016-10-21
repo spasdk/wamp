@@ -34,7 +34,7 @@ var wamp = new Wamp('ws://echo.websocket.org');
 Wait for an open state to exec remote method and serve remote request:
 
 ```js
-wamp.addListener(wamp.EVENT_OPEN, function () {
+wamp.onopen = function () {
     wamp.call('getInfo', {id: 128}, function ( error, result ) {
         // handle execution result
     });
@@ -44,15 +44,15 @@ wamp.addListener(wamp.EVENT_OPEN, function () {
         // send back results to the sender
         callback(null, requestedData);
     });
-});
+};
 ````
 
 Catch a connection loss and automatically reconnect:
 
 ```js
-wamp.addListener(wamp.EVENT_CLOSE, function () {
+wamp.onclose = function () {
     console.log('reconnecting in 5 seconds ...');
-});
+};
 ````
 
 Create a WAMP instance with increased reconnection time:
