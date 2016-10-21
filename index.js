@@ -28,11 +28,6 @@ function Wamp ( uri, config ) {
                 self.onopen();
             }
 
-            // there are some listeners
-            // if ( self.events[self.EVENT_OPEN] ) {
-            //     self.emit(self.EVENT_OPEN);
-            // }
-
             // set activity flag
             self.open = true;
         };
@@ -42,11 +37,6 @@ function Wamp ( uri, config ) {
             if ( typeof self.onclose === 'function' && self.open ) {
                 self.onclose();
             }
-
-            // there are some listeners and it's the first time
-            // if ( self.events[self.EVENT_CLOSE] && self.open ) {
-            //     self.emit(self.EVENT_CLOSE);
-            // }
 
             // mark as closed
             self.open = false;
@@ -94,10 +84,6 @@ Wamp.prototype.constructor = Wamp;
 
 // configuration
 Wamp.prototype.timeout = 5000;
-
-// events
-// Wamp.prototype.EVENT_OPEN  = 'wamp:connection:open';
-// Wamp.prototype.EVENT_CLOSE = 'wamp:connection:close';
 
 
 // public
