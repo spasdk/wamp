@@ -23,7 +23,7 @@
         "spa-eslint": "^1.0.0"
     },
     "keywords": [
-        "commonjs",
+        "spa",
         "sdk",
         "spasdk",
         "framework",
