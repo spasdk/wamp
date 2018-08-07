@@ -16,7 +16,7 @@
         "jsdoc": "jsdoc --destination docs *.js readme.md"
     },
     "dependencies": {
-        "cjs-wamp": "1.*.*"
+        "cjs-wamp": "^1.3.2"
     },
     "devDependencies": {
         "jsdoc": "^3.5.5",
