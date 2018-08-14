@@ -1,6 +1,6 @@
 {
     "name": "spa-wamp",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Web Application Messaging Protocol lightweight implementation.",
     "author": {
         "name": "Stanislav Kalashnik",
